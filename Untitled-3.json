@@ -1,0 +1,176 @@
+
+"egolepay": {"key": "16720f57ab0f4c36814d8b76bb0e0125baa","organisationCode": "00101112","Mode": "test","wallet": "42975265","vendType": "B2B","ip": "","name": "Eagole Communications","email": "princess.ademiluyi@courtevillegroup.com","identifier": "egolepay"},
+
+
+import random
+names = ['Adebayo','Olawale','Gbadamosi','Adeyemi','Anthony','Blessing','Christian','Daniel','Gloria','Chibuike','Peter','Taoheed','Olumide','Oluwaseun','Oluwatoyin','Opeyemi','Patrick','Appah','Cosmos','Innocent']
+
+# print(len(names))
+
+group1 = random.sample(names,5)
+for i in group1:
+  names.remove(i)
+group2 = random.sample(names,5)
+for i in group2:
+  names.remove(i)
+group3 = random.sample(names,5)
+for i in group3:
+  names.remove(i)
+group4 = random.sample(names,5)
+for i in group4:
+  names.remove(i)
+  
+print('GROUP 1: ')
+print(group1)
+print()
+print('GROUP 2: ')
+print(group2)
+print()
+print('GROUP 3: ')
+print(group3)
+print()
+print('GROUP 4: ')
+print(group4)
+
+
+
+# GROUP 4
+# ['Adebayo', 'Anthony', 'Peter', 'Blessing', 'Daniel']
+
+# Hangman Ascii art
+HANGMANPICS = ['''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
+
+#-----------  CODE BEGINS -----------------------
+print('Let\'s play a guessing game')
+print("\n\tYou need to guess a letter to fill in the blanks, for each wrong guess,you slowly hang a man.\nYou have 7 guesses before you run out of time.")
+print('\n\tHint 💡:it\'s a name of an animal')
+from words_bank import words
+import random
+
+# The reason I am typing the import words_bank is to enable me to access the words lists in the words_bank module
+# e.g 
+# import words_bank #with this we are importing the whole module
+# print(words_bank.words[0])
+# or we can do this instead
+# from words_bank import words with this we are importing a particular instance of the module
+# print(words)
+
+# 1. Create the necassary variables
+computers_word = random.choice(words)
+len_computers_word = len(computers_word)
+temp_len = len_computers_word
+player_space = []
+player_health = 7
+# print(len_computers_word)
+# To make the space, the player will type the word in dynamic, ill link it to the lens_computers_word
+for i in range(len_computers_word):
+  player_space.append("_")
+
+while True:
+  
+  # 2. Always test the code snippet as you go on with the print statement to avoid finishing and having to debug lengthy code
+  print(computers_word, len_computers_word, player_space)
+  # This confirms that the variables so far works 
+  # Also note im moving down the flowchart i.e the flowchart determines my next code
+  
+  # There should be a loop here
+  temp_space = " ".join(player_space) # The join() method takes all items in an iterable and joins them into one string.
+  # ANother reason we are using a new variable is because we want to be able to change an index of the list. If you notice you cant change an index of a string i.e str = "Dan" , str[0] = "a" , You wil get an error 
+  i = 0 # This will help us make dynamic decision
+  user_input = input(f"\nYour word is {temp_space}. Please guess a letter: ")
+  for char in computers_word:  
+    if char in user_input:
+      player_space[i] = user_input
+      print(f"Nice job, {player_space} Try guessing another")
+      len_computers_word -= 1 # doing this so we can add an if statement to check when the player is done typing
+      i += 1 # i variable will only be incremented if the player input is correct. This is so because we want player to only be able to move to the next letter if he is correct
+  if user_input not in computers_word: 
+      print("you have guessed the wrong letter")
+      print(HANGMANPICS[-player_health])
+      player_health -= 1 # Decrease player health after each failed  turn
+    # we used indexing here because we want to print in reverse. An easy way to do this is to create an index that stops at 7 and we also increment it.
+    #temp_len -= 1 # This checker is tied to the length of the word, so that the game ends when the player guesses a number up to the word i.e word is 4 letters long, therefore the player have 4 life
+  if len_computers_word == 0:
+    print("HURRAY🎉🎉🎉.\tYou have won the game")
+  if player_health == 0: #or temp_len == 0:
+    print(f"You have lost\nThe word of the day was {computers_word}")
+    break
+    # this  to close the game when the health reaches Zero and shows the word the player was meant to guess
+    # we can add a conditional statement i.e game_continuity = input("Do you which to continue")
+    # if game_continuity == "yes":
+      # do nothing
+    #if game_continuity == "no"
+      # break
+  
+  # The basic skeleton of the game is done. All that is left is to start adding loops
+  # Ill wait till in the morning to continue working on this
+  # To avoid mistakes, You can copy and paste the code in THONNNY
+  # This will avoid everyone working on the code at the same time
+  # if you want to work on the loops signify
+  # if you want to work on the commenting or print statements that will make the code fine. signify
+
+
+#THINGS TO DO
+# 1. Add hint feature
+# This hint feature would print the current missing letter or would print a letter at a random index location
+
+
+
+
+
+
+
+
+
+
+
+  
